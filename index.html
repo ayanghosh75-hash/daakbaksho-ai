@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ডাকবাক্স AI (DaakBaksho AI) — ঝর্ণা কলমের লাইভ ভয়েস রাইটিং</title>
+  
+  <!-- Font Definitions -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  
+  <!-- PWA & Mobile Web Capabilities -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="assets/DaakBaksho_Icon_Bengali_Transparent.png">
+  <link rel="apple-touch-icon" href="assets/DaakBaksho_Icon_Bengali_Transparent.png">
+  <meta name="theme-color" content="#991b1b">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Ambient Vintage Grain Overlay -->
+  <div class="vintage-grain"></div>
+
+  <!-- Navigation Bar -->
+  <header class="app-header">
+    <div class="brand-wrap">
+      <img src="assets/DaakBaksho_Icon_Bengali_Transparent.png" alt="ডাকবাক্স লোগো" class="brand-icon">
+      <div>
+        <h1 class="brand-title">ডাকবাক্স AI</h1>
+        <p class="brand-subtitle">ভয়েস দিয়ে ঝর্ণা কলমে লেখার জাদুকরী আর্কাইভ</p>
+      </div>
+    </div>
+
+    <!-- Language & Audio Toggle -->
+    <div class="header-actions">
+      <div class="lang-selector">
+        <button class="lang-btn active" data-lang="bn-IN">বাংলা</button>
+        <button class="lang-btn" data-lang="hi-IN">हिन्दी</button>
+        <button class="lang-btn" data-lang="en-US">English</button>
+      </div>
+
+      <button id="soundToggleBtn" class="action-pill" title="কলমের শব্দ চালু/বন্ধ">
+        <span class="icon">🔊</span> খসখস শব্দ চালু
+      </button>
+
+      <button id="assistVoiceBtn" class="action-pill voice-guide-pill" title="দৃষ্টিহীনদের জন্য অডিও নির্দেশনা">
+        <span class="icon">👁️</span> অডিও গাইড
+      </button>
+
+      <a href="https://www.buymeacoffee.com/AyanKumarGhosh" target="_blank" rel="noopener" class="action-pill bmc-pill" title="এক কাপ চা বা কফি খাওয়ান">
+        <span class="icon">☕</span> চা/কফি খাওয়ান
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Experience Workspace -->
+  <main class="main-workspace">
+
+    <!-- Left / Center: The Vintage Parchment Paper -->
+    <section class="parchment-container">
+      <div class="parchment-paper" id="paperArea">
+        
+        <!-- Vintage Postmarks & Wax Seal Watermark -->
+        <div class="paper-postmark">
+          <div class="postmark-circle">
+            <span>KOLKATA G.P.O.</span>
+            <strong>DAAKBAKSHO</strong>
+            <span id="currentDateStamp">09 NOV 2026</span>
+          </div>
+          <div class="postmark-lines"></div>
+        </div>
+
+        <div class="wax-seal-badge">
+          <span>📮</span>
+        </div>
+
+        <!-- Paper Header -->
+        <div class="parchment-header">
+          <span class="salutation" id="paperSalutation">শ্রদ্ধেয় / প্রিয়জনেষু,</span>
+          <span class="paper-stamp">চিঠির যুগ • ১৯০১</span>
+        </div>
+
+        <!-- The Ink Text Area & Dynamic Fountain Pen Nib -->
+        <div class="parchment-body">
+          <div id="handwritingOutput" class="ink-text kalpurush-text">
+            মুখে কথা বলুন... আপনার প্রতিটি কথা এখানে পুরনো ঝর্ণা কলম নিজের হাতে লিখে দেবে।
+          </div>
+
+          <!-- Animated Fountain Pen Nib SVG -->
+          <div id="fountainPenNib" class="fountain-pen-nib">
+            <svg viewBox="0 0 64 64" class="pen-svg">
+              <path d="M32 2 L42 28 L38 34 L32 30 L26 34 L22 28 Z" fill="#d97706" stroke="#b45309" stroke-width="1.5"/>
+              <path d="M32 30 L32 58" stroke="#1c1917" stroke-width="2"/>
+              <circle cx="32" cy="42" r="2.5" fill="#1c1917"/>
+              <polygon points="32,62 30,56 34,56" fill="#1c1917"/>
+              <path d="M22 28 L28 4 L36 4 L42 28 Z" fill="url(#goldGrad)" opacity="0.9"/>
+              <defs>
+                <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#fef08a"/>
+                  <stop offset="50%" stop-color="#eab308"/>
+                  <stop offset="100%" stop-color="#ca8a04"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <span class="ink-droplet"></span>
+          </div>
+        </div>
+
+        <!-- Paper Footer / Signature -->
+        <div class="parchment-footer">
+          <div class="live-meta">
+            <span id="wordCount">০ শব্দ</span> • <span id="readingTime">০১ মিনিট পাঠ</span>
+          </div>
+          <div class="signature-line">
+            ইতির পক্ষে— <strong id="signerName">আপনার নাম</strong>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Live Voice Feedback Pill -->
+      <div class="voice-status-bar" id="voiceStatusPill">
+        <span class="pulse-indicator"></span>
+        <span id="voiceStatusText">মাইক্রোফোন অন করতে নিচের লাল বাটনে চাপুন...</span>
+      </div>
+    </section>
+
+    <!-- Right: Controls & Studio Actions -->
+    <aside class="control-panel">
+      
+      <!-- Big Tactile Microphone Area (Blind Accessible) -->
+      <div class="mic-card">
+        <button id="micOrbBtn" class="mic-orb" aria-label="কথা বলা শুরু বা বন্ধ করতে চাপুন">
+          <div class="orb-ring ring-1"></div>
+          <div class="orb-ring ring-2"></div>
+          <span class="mic-icon">🎙️</span>
+        </button>
+        <h3 id="micActionPrompt">কথা বলা শুরু করুন</h3>
+        <p>স্ক্রিনে যেকোনো জায়গায় স্পেসবার চাপুন বা বাটনে ক্লিক করুন</p>
+      </div>
+
+      <!-- Ink Color Palette -->
+      <div class="control-card">
+        <h4>🖋️ কালির রঙ নির্বাচন:</h4>
+        <div class="ink-palette">
+          <button class="ink-color-btn active" data-color="#1e3a8a" style="background: #1e3a8a;" title="রাজকীয় নীল কালি"></button>
+          <button class="ink-color-btn" data-color="#0f172a" style="background: #0f172a;" title="কালো কালি"></button>
+          <button class="ink-color-btn" data-color="#7c2d12" style="background: #7c2d12;" title="সেপিয়া বাদামি"></button>
+          <button class="ink-color-btn" data-color="#831843" style="background: #831843;" title="রক্তিম লাল"></button>
+        </div>
+      </div>
+
+      <!-- Preset Voice Prompts (Quick Test) -->
+      <div class="control-card">
+        <h4>✨ টেস্ট করার জন্য নমুনা স্মৃতি:</h4>
+        <div class="prompt-chips">
+          <button class="prompt-chip" data-text="মা, তোমার হাতের সেই রান্নার গন্ধ আমি আজও ভুলতে পারি না। অনেক দূরে আছি ঠিকই, কিন্তু তোমার স্নেহ আমার সবসময়ের সঙ্গী।">
+            💌 মায়ের প্রতি চিঠি
+          </button>
+          <button class="prompt-chip" data-text="১৯৭১ সালের সেই বৃষ্টির রাত, বাবা যখন হাত ধরে বলেছিল—ভয় পাস না, আলো ফুটবেই। আজ এত বছর পরেও সেই কথাটা কানে বাজে।">
+            📜 পুরনো দিনের লড়াই
+          </button>
+          <button class="prompt-chip" data-text="কলেজের সেই গঙ্গার ঘাট, এক কাপ চা আর বন্ধুদের সাথে ঘণ্টার পর ঘণ্টা আড্ডা। সময় এত দ্রুত বদলে যায়!">
+            ☕ কলকাতার স্মৃতিকথা
+          </button>
+        </div>
+      </div>
+
+      <!-- Voice Editing Commands Guide Card -->
+      <div class="control-card voice-commands-card">
+        <h4>🗣️ মুখে বলে এডিট করার কমান্ড:</h4>
+        <ul class="voice-cmd-list">
+          <li><strong>"মুছে ফেলো"</strong> বা <strong>"ভুল হয়েছে"</strong> ➔ শেষ বাক্য কাটে</li>
+          <li><strong>"সব মুছে ফেলো"</strong> ➔ নতুন ফাঁকা কাগজ দেয়</li>
+          <li><strong>"বদলে লেখো [কথা]"</strong> ➔ নতুন বাক্য বসায়</li>
+          <li><strong>"ইতি [নাম]"</strong> ➔ স্বাক্ষর পরিবর্তন করে</li>
+          <li><strong>"রঙ লাল / নীল / কালো"</strong> ➔ কালির রঙ বদলায়</li>
+        </ul>
+      </div>
+
+      <!-- Export & Download Actions -->
+      <div class="control-card export-card">
+        <h4>📥 সংরক্ষণ ও শেয়ার:</h4>
+        <div class="export-buttons">
+          <button id="downloadJpgBtn" class="btn-export btn-jpg">
+            <span>📸</span> HD ফটো কার্ড (JPG)
+          </button>
+          <button id="downloadVideoBtn" class="btn-export btn-video">
+            <span>🎥</span> অ্যানিমেটেড রিল ভিডিও (MP4)
+          </button>
+        </div>
+        <p class="export-note">ইনস্টাগ্রাম রিলস, ফেসবুক ও হোয়াটসঅ্যাপ স্ট্যাটাসে শেয়ারের জন্য প্রস্তুত।</p>
+      </div>
+
+      <!-- Buy Me a Coffee Support Card -->
+      <div class="control-card bmc-card" style="background: linear-gradient(135deg, rgba(254,240,138,0.3), rgba(253,230,138,0.15)); border: 1.5px solid #d97706; border-radius: 12px; padding: 14px; margin-top: 14px; text-align: center;">
+        <h4 style="margin: 0 0 6px 0; color: #92400e; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px;">
+          <span>☕</span> ডাকবাক্স AI ভালো লেগেছে?
+        </h4>
+        <p style="font-size: 12px; color: #4b5563; margin: 0 0 10px 0; line-height: 1.4;">
+          বিনামূল্যে বাংলা সংস্কৃতির এই আর্কাইভ বজায় রাখতে এক কাপ চা বা কফি দিয়ে সহায়তা করতে পারেন।
+        </p>
+        <a href="https://www.buymeacoffee.com/AyanKumarGhosh" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #FFDD00; color: #000; padding: 8px 16px; border-radius: 8px; font-weight: 700; font-size: 13px; text-decoration: none; box-shadow: 0 2px 6px rgba(0,0,0,0.12); width: 100%; box-sizing: border-box;">
+          <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee" style="height: 18px;">
+          <span>Buy Me a Coffee</span>
+        </a>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <!-- Hidden Canvas for High-Resolution Export -->
+  <canvas id="exportCanvas" width="1080" height="1920" style="display: none;"></canvas>
+
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(err => {
+          console.log('SW registration note:', err);
+        });
+      });
+    }
+  </script>
+</body>
+</html>

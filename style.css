@@ -1,0 +1,613 @@
+/* ==========================================================================
+   DaakBaksho AI (ডাকবাক্স AI) — Vintage Fountain Pen Writing Design System
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Kalpurush';
+  src: url('fonts/Kalpurush.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg-dark: #0f1115;
+  --bg-card: rgba(23, 26, 33, 0.85);
+  --border-glass: rgba(255, 255, 255, 0.08);
+  --accent-red: #dc2626;
+  --accent-gold: #f59e0b;
+  --ink-royal: #1e3a8a;
+  --parchment-base: #fcf9f2;
+  --parchment-border: #e6decb;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --font-bengali: 'Kalpurush', 'Noto Sans Bengali', -apple-system, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  --shadow-paper: 0 25px 60px -15px rgba(0, 0, 0, 0.5), 0 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-dark);
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(220, 38, 38, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(245, 158, 11, 0.08) 0%, transparent 40%);
+  background-attachment: fixed;
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.kalpurush-text {
+  font-family: var(--font-bengali);
+}
+
+/* Header */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  background: rgba(15, 17, 21, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-glass);
+  z-index: 50;
+}
+
+.brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.brand-icon {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 10px rgba(220, 38, 38, 0.4));
+}
+
+.brand-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #ffffff;
+  font-family: var(--font-bengali);
+  letter-spacing: -0.01em;
+}
+
+.brand-subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-family: var(--font-bengali);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.lang-selector {
+  display: flex;
+  background: #1c1f26;
+  border: 1px solid var(--border-glass);
+  border-radius: 20px;
+  padding: 3px;
+}
+
+.lang-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.lang-btn.active {
+  background: #dc2626;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.35);
+}
+
+.action-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #1c1f26;
+  border: 1px solid var(--border-glass);
+  color: #e2e8f0;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--font-bengali);
+}
+
+.action-pill:hover {
+  background: #282c37;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.voice-guide-pill {
+  border-color: rgba(245, 158, 11, 0.3);
+  color: #fbbf24;
+}
+
+/* Main Workspace */
+.main-workspace {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 36px;
+  padding: 36px 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ==========================================================================
+   Vintage Parchment Paper Area
+   ========================================================================== */
+.parchment-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.parchment-paper {
+  background: var(--parchment-base);
+  background-image: 
+    radial-gradient(#e5dec9 0.75px, transparent 0.75px),
+    linear-gradient(180deg, rgba(245, 239, 224, 0.6) 0%, rgba(240, 232, 212, 0.8) 100%);
+  background-size: 16px 16px, 100% 100%;
+  border: 1px solid var(--parchment-border);
+  border-radius: 12px;
+  padding: 50px 55px;
+  min-height: 580px;
+  box-shadow: var(--shadow-paper);
+  position: relative;
+  overflow: hidden;
+  color: #1c1917;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Vintage Postmark */
+.paper-postmark {
+  position: absolute;
+  top: 36px;
+  right: 46px;
+  opacity: 0.75;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.postmark-circle {
+  width: 80px;
+  height: 80px;
+  border: 2px dashed #991b1b;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 8.5px;
+  font-weight: 800;
+  color: #991b1b;
+  letter-spacing: 0.05em;
+  transform: rotate(-12deg);
+}
+
+.postmark-circle strong {
+  font-size: 9.5px;
+  margin: 2px 0;
+}
+
+.postmark-lines {
+  width: 36px;
+  height: 24px;
+  border-top: 2px solid #991b1b;
+  border-bottom: 2px solid #991b1b;
+  opacity: 0.7;
+}
+
+/* Wax seal badge */
+.wax-seal-badge {
+  position: absolute;
+  bottom: 30px;
+  right: 40px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #b91c1c 0%, #7f1d1d 100%);
+  border: 2px solid #ef4444;
+  box-shadow: 0 4px 15px rgba(185, 28, 28, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  opacity: 0.9;
+  transform: rotate(8deg);
+}
+
+.parchment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed #d1c7ad;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+}
+
+.salutation {
+  font-family: var(--font-bengali);
+  font-size: 20px;
+  font-weight: 700;
+  color: #78350f;
+}
+
+.paper-stamp {
+  font-size: 11px;
+  font-weight: 700;
+  color: #92400e;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* The Body and Animated Fountain Pen */
+.parchment-body {
+  flex: 1;
+  position: relative;
+  min-height: 280px;
+}
+
+.ink-text {
+  font-family: var(--font-bengali);
+  font-size: 23px;
+  line-height: 1.9;
+  color: var(--ink-royal);
+  word-break: break-word;
+  white-space: pre-wrap;
+  transition: color 0.3s ease;
+  min-height: 200px;
+  text-shadow: 0.5px 0.5px 1px rgba(30, 58, 138, 0.15);
+}
+
+.ink-text span.new-letter {
+  animation: ink-bleed 0.35s ease-out;
+}
+
+@keyframes ink-bleed {
+  0% { opacity: 0; transform: scale(1.15) translateY(-2px); filter: blur(1.5px); }
+  50% { opacity: 0.8; filter: blur(0.5px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+}
+
+/* Fountain Pen Nib following the writing */
+.fountain-pen-nib {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  pointer-events: none;
+  transform: translate(0, 0) rotate(-45deg);
+  transform-origin: 32px 62px;
+  transition: all 0.12s cubic-bezier(0.2, 0.8, 0.4, 1);
+  filter: drop-shadow(4px 10px 8px rgba(0, 0, 0, 0.25));
+  z-index: 10;
+  display: inline-block;
+}
+
+.fountain-pen-nib.writing {
+  animation: pen-wiggle 0.18s infinite alternate ease-in-out;
+}
+
+@keyframes pen-wiggle {
+  0% { transform: translate(0, 0) rotate(-43deg); }
+  100% { transform: translate(2px, -3px) rotate(-47deg); }
+}
+
+.pen-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ink-droplet {
+  position: absolute;
+  bottom: 0;
+  left: 30px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--ink-royal);
+  opacity: 0.8;
+  box-shadow: 0 0 4px var(--ink-royal);
+}
+
+/* Paper Footer */
+.parchment-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px dashed #d1c7ad;
+  padding-top: 18px;
+  margin-top: 24px;
+  font-family: var(--font-bengali);
+  font-size: 13px;
+  color: #78716c;
+}
+
+.signature-line strong {
+  color: #1c1917;
+  font-size: 15px;
+}
+
+/* Voice Status Bar */
+.voice-status-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(23, 26, 33, 0.7);
+  border: 1px solid var(--border-glass);
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-size: 13px;
+  color: #cbd5e1;
+  font-family: var(--font-bengali);
+}
+
+.pulse-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #f59e0b;
+  box-shadow: 0 0 10px #f59e0b;
+}
+
+.voice-status-bar.active-listening .pulse-indicator {
+  background: #22c55e;
+  box-shadow: 0 0 15px #22c55e;
+  animation: pulse-ring 1.5s infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.5; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ==========================================================================
+   Control Panel Sidebar
+   ========================================================================== */
+.control-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.control-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+  padding: 22px;
+}
+
+.control-card h4 {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #e2e8f0;
+  font-family: var(--font-bengali);
+  margin-bottom: 14px;
+}
+
+/* Big Tactile Microphone Orb */
+.mic-card {
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.15) 0%, rgba(15, 17, 21, 0.8) 100%);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: 20px;
+  padding: 28px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.mic-orb {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+  border: none;
+  color: #ffffff;
+  font-size: 38px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(220, 38, 38, 0.45), inset 0 2px 4px rgba(255, 255, 255, 0.4);
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mic-orb:hover {
+  transform: scale(1.06);
+  filter: brightness(1.1);
+}
+
+.mic-orb.recording {
+  background: linear-gradient(135deg, #22c55e 0%, #15803d 100%);
+  box-shadow: 0 0 40px rgba(34, 197, 94, 0.6);
+  animation: orb-pulse 1.8s infinite ease-in-out;
+}
+
+@keyframes orb-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+.mic-card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: var(--font-bengali);
+  margin-top: 16px;
+  margin-bottom: 6px;
+}
+
+.mic-card p {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  font-family: var(--font-bengali);
+}
+
+/* Ink Palette */
+.ink-palette {
+  display: flex;
+  gap: 12px;
+}
+
+.ink-color-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ink-color-btn:hover {
+  transform: scale(1.15);
+}
+
+.ink-color-btn.active {
+  border-color: #ffffff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  transform: scale(1.1);
+}
+
+/* Prompt chips */
+.prompt-chips {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.prompt-chip {
+  background: #161920;
+  border: 1px solid var(--border-glass);
+  color: #cbd5e1;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-align: left;
+  font-size: 12.5px;
+  font-family: var(--font-bengali);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.prompt-chip:hover {
+  background: #232733;
+  color: #ffffff;
+  border-color: rgba(245, 158, 11, 0.4);
+  transform: translateX(4px);
+}
+
+/* Export Card */
+.export-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-export {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 18px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+  font-family: var(--font-bengali);
+}
+
+.btn-jpg {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+}
+
+.btn-video {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.35);
+}
+
+.btn-export:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+.export-note {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--font-bengali);
+  margin-top: 12px;
+  text-align: center;
+}
+
+.voice-commands-card {
+  background: rgba(30, 27, 75, 0.4);
+  border-color: rgba(99, 102, 241, 0.25);
+}
+
+.voice-cmd-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 12px;
+  font-family: var(--font-bengali);
+  color: #cbd5e1;
+}
+
+.voice-cmd-list strong {
+  color: #fbbf24;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .main-workspace {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+  .app-header {
+    padding: 14px 20px;
+    flex-direction: column;
+    gap: 14px;
+  }
+}
